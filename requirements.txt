@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+nltk
+matplotlib
+seaborn
+imbalanced-learn
+trnlp
+snowballstemmer
+reportlab
+gensim
