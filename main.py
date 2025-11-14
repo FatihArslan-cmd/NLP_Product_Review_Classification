@@ -97,9 +97,9 @@ print("\n Sınıflandırma Sonuçları (Binary + Dengelemeli):")
 print(classification_report(y_test, y_pred))
 
 # 🔹 Model ve vectorizer kaydet
-joblib.dump(model, "model.pkl")
-joblib.dump(vectorizer, "vectorizer.pkl")
-joblib.dump((X_test, y_test, y_pred), "eval_data.pkl")
+joblib.dump(model, "predict/model.pkl")
+joblib.dump(vectorizer, "predict/vectorizer.pkl")
+joblib.dump((X_test, y_test, y_pred), "evaluate/eval_data.pkl")
 
 print("\n Model, vectorizer ve test verisi kaydedildi.")
 print(" 'evaluate.py' dosyasını çalıştırarak grafiklerle değerlendirme yapabilirsin.\n")

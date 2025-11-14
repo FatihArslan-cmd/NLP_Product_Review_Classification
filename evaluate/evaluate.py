@@ -6,9 +6,9 @@ from reportlab.lib.pagesizes import A4
 from datetime import datetime
 
 # Kaydedilen verileri yükle
-model = joblib.load("model.pkl")
-vectorizer = joblib.load("vectorizer.pkl")
-X_test, y_test, y_pred = joblib.load("eval_data.pkl")
+model = joblib.load("predict/model.pkl")
+vectorizer = joblib.load("predict/vectorizer.pkl")
+X_test, y_test, y_pred = joblib.load("evaluate/eval_data.pkl")
 
 # 🎯 Temel metrikleri hesapla
 accuracy = accuracy_score(y_test, y_pred)
@@ -27,7 +27,7 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["Positive", "
 disp.plot(cmap="Blues")
 plt.title("Confusion Matrix")
 plt.tight_layout()
-plt.savefig("confusion_matrix.png", dpi=300)
+plt.savefig("evaluate/confusion_matrix.png", dpi=300)
 plt.close()
 
 # 📈 Metrikleri bar grafiğiyle göster
@@ -43,11 +43,11 @@ plt.ylabel('Score')
 for i, v in enumerate(values):
     plt.text(i, v + 0.02, f"{v:.2f}", ha='center', fontweight='bold')
 plt.tight_layout()
-plt.savefig("performance_metrics.png", dpi=300)
+plt.savefig("evaluate/performance_metrics.png", dpi=300)
 plt.close()
 
 # 📝 PDF raporu oluştur
-pdf_filename = "evaluation_report.pdf"
+pdf_filename = "evaluate/evaluation_report.pdf"
 c = canvas.Canvas(pdf_filename, pagesize=A4)
 width, height = A4
 
@@ -67,8 +67,8 @@ c.drawString(50, height - 170, f"Recall:    {recall:.4f}")
 c.drawString(50, height - 190, f"F1 Score:  {f1:.4f}")
 
 # Görselleri ekle
-c.drawImage("confusion_matrix.png", 50, height - 550, width=250, height=250)
-c.drawImage("performance_metrics.png", 320, height - 550, width=250, height=250)
+c.drawImage("evaluate/confusion_matrix.png", 50, height - 550, width=250, height=250)
+c.drawImage("evaluate/performance_metrics.png", 320, height - 550, width=250, height=250)
 
 # Açıklama
 c.setFont("Helvetica", 11)
